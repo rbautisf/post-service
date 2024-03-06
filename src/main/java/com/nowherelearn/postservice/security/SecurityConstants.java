@@ -4,7 +4,10 @@ public final class SecurityConstants {
     public static String[] AUTH_WHITELIST = {
             "/actuator",
             "/swagger-ui/**",
-            "/api-docs/**"
+            "/api-docs/**",
+            "/assets/**",
+            "/webjars/**",
+            "/logged-out"
     };
     public static final String ROLES_CLAIM = "roles";
 

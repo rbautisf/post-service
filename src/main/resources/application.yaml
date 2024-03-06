@@ -1,6 +1,12 @@
 server:
-  port: 9001
+  port: 9002
+  servlet:
+    context-path: /post-service
+  forward-headers-strategy: native
+
 spring:
+  thymeleaf:
+    cache: false
   application:
     name: post-service
   main:
@@ -11,7 +17,7 @@ spring:
         jwt:
 #          public-key-location: classpath:public.pem /or the value
 #          jws-algorithms: RS256
-          jwk-set-uri: http://localhost:9000/oauth2/jwks
+          jwk-set-uri: http://localhost/auth-server/oauth2/jwks
   datasource:
     url: jdbc:h2:mem:postdb
     driver-class-name: org.h2.Driver
@@ -38,8 +44,8 @@ springdoc:
       use-pkce-with-authorization-code-grant: true
       use-basic-authentication-with-access-code-grant: true
   oauth-flow:
-    authorizationUrl: ${AUTHORIZATION_URL:http://localhost:9000/oauth2/authorize}
-    tokenUrl: ${TOKEN_URL:http://localhost:9000/oauth2/token}
+    authorizationUrl: ${AUTHORIZATION_URL:http://localhost/auth-server/oauth2/authorize}
+    tokenUrl: ${TOKEN_URL:http://localhost/auth-server/oauth2/token}
     scopes:
         message.read: scope for read message
         message.write: scope for write message

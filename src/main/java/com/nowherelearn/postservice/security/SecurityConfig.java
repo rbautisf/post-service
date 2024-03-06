@@ -3,7 +3,6 @@ package com.nowherelearn.postservice.security;
 import com.nowherelearn.postservice.security.converter.JwtAuthenticationConverterCustom;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -32,9 +30,8 @@ public class SecurityConfig {
     private final Customizer<AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry> authorizeHttpRequestsCustomizer = authorizeRequests -> {
         authorizeRequests
                 .requestMatchers(SecurityConstants.AUTH_WHITELIST).permitAll()
-                .requestMatchers(HttpMethod.GET, "/posts")
-                .hasAnyAuthority("ROLE_USER")
+//                .requestMatchers(HttpMethod.GET, "/posts")
+//                .hasAnyAuthority("ROLE_USER")
                 .anyRequest().authenticated();
     };
-
 }
